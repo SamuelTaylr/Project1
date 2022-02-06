@@ -53,16 +53,30 @@ class scenarios {
     //spark.sql("insert overwrite table Branch_Partition partition(Branch = 'Branch8') select distinct beverage from bev_branch where branch = 'Branch8'")
     //spark.sql("LOAD DATA LOCAL INPATH 'input/Bev_Branch.txt' INTO TABLE Branch_Partition partition(Branch=Branch1)")
     //spark.sql("LOAD DATA LOCAL INPATH 'input/Bev_Branch.txt' INTO TABLE Branch_Partition partition(Branch=Branch8)")
-    spark.sql("select distinct beverage, branch from Branch_Partition group by branch ").show(100)
+    spark.sql("select distinct beverage, branch from Branch_Partition group by branch, beverage order by branch ").show(100)
     println("Showing a new view created with the results of select queries from scenario 3: ")
-
+    spark.sql("create view if not exists Unique_Beverages as select distinct beverage, branch from bev_branch where branch = 'Branch1' or branch = 'Branch8' ")
+    spark.sql("select distinct beverage, branch from Unique_Beverages group by branch, beverage order by branch").show(100)
   }
 
   def scenarioFive(spark: SparkSession) : Unit = {
+    /*Problem Scenario 5
+    Alter the table properties to add "note","comment"
+    Remove a row from the any Senario.*/
+    println("Alter a table to add comments")
+    spark.sql("create table if not exists scenario5_table(Beverage String comment 'Beverage Name', Branch String comment 'Branch Number')")
+    //spark.sql("load data local inpath 'input/Bev_Branch.txt' into table scenario5_table")
+    spark.sql("describe formatted scenario5_table").show()
+    spark.sql("create table if not exists scenario5_table_temp(Beverage String comment 'Beverage Name')")
+    //spark.sql("insert into scenario5_table_temp (select Beverage from scenario5_table)")
+    //spark.sql("alter table scenario5_table replace columns(Beverage String comment 'Beverage Name')")
+    spark.sql("describe formatted scenario5_table_temp").show()
 
   }
 
   def uniqueScenario(spark: SparkSession) : Unit = {
+    //Future query, insert price data for each drink type, then join on bev_count table and find which Branch has
+    // the highest gross sales and which drinks bring the most money to that branch.
 
   }
 }

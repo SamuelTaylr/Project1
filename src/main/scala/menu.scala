@@ -24,6 +24,7 @@ class menu {
       }
       case 5 => {
         println("Results for Scenario 5 : ")
+        scenario.scenarioFive(spark)
       }
       case 6 => {
         println("Results for Scenario 6 : ")
