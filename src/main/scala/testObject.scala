@@ -11,37 +11,18 @@ object testObject {
     .config("spark.master", "local")
     .enableHiveSupport()
     .getOrCreate()
-  println("created spark session")
+  println("Spark Works Y'all")
 
   import spark.implicits._
   spark.sparkContext.setLogLevel("ERROR")
 
-  def menuMethod(): Unit = {
 
-    val menu = new menu
-    println(
-      """
-        |************************
-        |Enter a number to select
-        |a menu item.************
-        |************************
-        |1. Scenario 1***********
-        |2. Scenario 2***********
-        |3. Scenario 3***********
-        |4. Scenario 4***********
-        |5. Scenario 5***********
-        |6. Unique Scenario******
-        |************************
-        |""".stripMargin)
-    val selection = readInt()
-    menu.selectionMenu(selection,spark)
-
-  }
 
   def main(args: Array[String]): Unit = {
 
     //createDatabase.createDatabaseFirst(spark)
-    menuMethod()
+    val menu = new menu
+    menu.selectionMenu(spark)
 
     //spark.sql("CREATE TABLE IF NOT EXISTS src (key INT, value STRING) USING hive")
     //spark.sql("CREATE TABLE IF NOT EXISTS src(key INT, value STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ‘,’ STORED AS TEXTFILE")
