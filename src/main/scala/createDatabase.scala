@@ -7,10 +7,10 @@ object createDatabase {
   import spark.implicits._
 
   def createDatabaseFirst(spark: SparkSession): Unit = {
-    spark.sql("create table if not exists bev_branch(Beverage String,Branch String) row format delimited fields terminated by ','")
-    spark.sql("create table if not exists bev_count(Beverage String,Count Int) row format delimited fields terminated by ','")
-    //spark.sql("LOAD DATA LOCAL INPATH 'input/Bev_Branch.txt' INTO TABLE bev_branch")
-    //spark.sql("LOAD DATA LOCAL INPATH 'input/Bev_Conscount.txt' INTO TABLE bev_count")
+    spark.sql("create table if not exists bev_branch1(Beverage String,Branch String) row format delimited fields terminated by ','")
+    spark.sql("create table if not exists bev_count1(Beverage String,Count Int) row format delimited fields terminated by ','")
+    spark.sql("LOAD DATA LOCAL INPATH 'input/Bev_Branch.txt' INTO TABLE bev_branch1")
+    spark.sql("LOAD DATA LOCAL INPATH 'input/Bev_Conscount.txt' INTO TABLE bev_count1")
     //case class beverages(name: String, branch: String)
     //val bevTable = spark.sparkContext.textFile("input/bev_branch.txt")
     //val df2 = bevTable.map(_.split(",")).map{case Array(a,b) => (a,b)}.toDF("Beverage","Branch")

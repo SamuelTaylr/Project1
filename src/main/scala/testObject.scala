@@ -24,13 +24,5 @@ object testObject {
     val menu = new menu
     menu.selectionMenu(spark)
 
-    //spark.sql("CREATE TABLE IF NOT EXISTS src (key INT, value STRING) USING hive")
-    //spark.sql("CREATE TABLE IF NOT EXISTS src(key INT, value STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ‘,’ STORED AS TEXTFILE")
-    //spark.sql("LOAD DATA LOCAL INPATH 'input/' INTO TABLE src")
-    //spark.sql("CREATE TABLE IF NOT EXISTS src (key INT,value STRING) USING hive")
-    //spark.sql("create table newone1(id Int,name String) row format delimited fields terminated by ','");
-    //spark.sql("LOAD DATA LOCAL INPATH 'input/' INTO TABLE newone1")
-    //spark.sql("SELECT * FROM newone1").show()
-
   }
 }
